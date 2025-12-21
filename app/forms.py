@@ -1,6 +1,6 @@
-from flask_wtf import FlaskForm, BooleanField
+from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
-from wtforms import FileField, SubmitField
+from wtforms import FileField, SubmitField, BooleanField
 from flask_wtf.file import FileAllowed
 
 def make_video_upload_form(letters):
