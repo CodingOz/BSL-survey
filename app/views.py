@@ -32,10 +32,12 @@ def All():
 
 
     if form.validate_on_submit():
+        submission_id = str(uuid.uuid4())
+
         for letter in letters:
             video = getattr(form, f"video_{letter}").data
             if video:
-                object_key = f"{uuid.uuid4()}/{letter}.mp4"
+                object_key = f"submissions/{submission_id}/{letter}.mp4"
                 upload_video(video, object_key)
 
         return redirect('/success')
