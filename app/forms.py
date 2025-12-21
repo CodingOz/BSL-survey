@@ -6,7 +6,7 @@ class VideoUploadForm(FlaskForm):
     submit = SubmitField("Submit")
 
     def __init__(self, *args, letters=None, **kwargs):
-        # 1️⃣ Add fields FIRST
+        # Add fields FIRST
         if letters:
             for letter in letters:
                 field_name = f"video_{letter}"
@@ -19,5 +19,5 @@ class VideoUploadForm(FlaskForm):
                     )
                 )
 
-        # 2️⃣ THEN let WTForms bind request data
+        # THEN let WTForms bind request data
         super().__init__(*args, **kwargs)
