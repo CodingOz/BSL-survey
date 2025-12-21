@@ -32,10 +32,11 @@ I'm making an app for recognising and teaching some basic British sign language 
           <p>After your video is processed to extract keypoint tracking data of hand gestures, <strong>the original video files will be permanently deleted</strong>. Only the anonymized keypoint data (no identifiable video) will be kept for analysis. This ensures your personal data and identity remain secure.</p>
           <p>Here is an example of what that keypoint data would look like: </p>
           <div class="example-data-wrapper">
-              <video class="data-video" controls>
-              <source src="{{ url_for('static', filename='videos/HandTracking.mp4') }}" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+            <iframe
+              src="https://www.youtube.com/watch?v=mesL1xcYnuE"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
           </div>
           <p>The anonymized keypoint data extracted from your videos will be used solely for the research and development of the BSL recognision software. Your data will not be shared with third parties and will be stored securely.<p>
         </div>
@@ -69,10 +70,11 @@ I'm making an app for recognising and teaching some basic British sign language 
                 </div>
                 
                 <div class="tutorial-video-wrapper">
-                  <video class="tutorial-video" controls>
-                    <source src="{{ url_for('static', filename='videos/' ~ letter ~ '.mp4') }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
+                    <iframe
+                      src={{video_tutorials[letter]}}
+                      loading="lazy"
+                      allowfullscreen>
+                    </iframe>
                   <p class="video-caption">Watch tutorial for "{{ letter }}"</p>
                 </div>
 
