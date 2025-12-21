@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+  <title>{{ title or "BSL Video Survey" }}</title>
+</head>
+<body>
+
+  <div class="header-banner">
+    <div class="container">
+      <h1 class="main-title">British Sign Language Video Survey</h1>
+      <p class="subtitle">Help build an accessible BSL education app</p>
+    </div>
+  </div>
+
+  <div class="container content-wrapper">
+    
+    <div class="info-card">
+      <div class="card-header-custom">
+        <h2>Thank You for Participating!</h2>
+      </div>
+      <div class="card-body-custom">
+        <p>Thank so much to everyone for participation in this survey, I really appreciate the help.
+
+I'm making an app for recognising and teaching some basic British sign language as my Final Year Project  so need to collect some footage of (hopefully) around 70  people doing a few character basic sign language</p>
+        
+        <div class="privacy-notice">
+          <h3>🔒 Your Privacy is Protected</h3>
+          <p>After your video is processed to extract keypoint tracking data of hand gestures, <strong>the original video files will be permanently deleted</strong>. Only the anonymized keypoint data (no identifiable video) will be kept for analysis. This ensures your personal data and identity remain secure.</p>
+          <p>Here is an example of what that keypoint data would look like: </p>
+          <div class="example-data-wrapper">
+              <video class="data-video" controls>
+              <source src="{{ url_for('static', filename='videos/HandTracking.mp4') }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <p>The anonymized keypoint data extracted from your videos will be used solely for the research and development of the BSL recognision software. Your data will not be shared with third parties and will be stored securely.<p>
+        </div>
+
+
+        <div class="instructions">
+          <h3>Recording Instructions</h3>
+          <ul>
+            <li>Video examples are provided for reference for each sign</li>
+            <li>please try to match the general style/camera-angle of these examples</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h2 class="form-title">Record Your BSL Signs</h2>
+      
+      <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        
+        <div class="video-grid">
+          {% for letter in letters %}
+              {% set field_name = 'video_' ~ letter %}
+              {% set field = form | getattr(field_name) %}
+
+              <div class="video-upload-item">
+                <div class="upload-label">
+                  {{ field.label }}
+                  <span class="sign-badge">{{ letter }}</span>
+                </div>
+                
+                <div class="tutorial-video-wrapper">
+                  <video class="tutorial-video" controls>
+                    <source src="{{ url_for('static', filename='videos/' ~ letter ~ '.mp4') }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                  <p class="video-caption">Watch tutorial for "{{ letter }}"</p>
+                </div>
+
+                <p1> Click to upload your video</p1>
+
+                <div class="upload-wrapper">
+                  {{ field(class="form-control-file custom-file-input", accept="video/*", capture="user") }}
+                  <span class="file-chosen">No file chosen</span>
+                </div>
+              </div>
+          {% endfor %}
+
+          <div class="consent-section">
+          <h3 class="consent-title">Consent Agreement</h3>
+          <p class="consent-intro">Please read and agree to the following before submitting:</p>
+          
+          <div class="consent-checkbox-group">
+            <div class="consent-item">
+              {{ form.consent_video_deletion(id="consent1") }} {{ form.consent_video_deletion.label }}
+            </div>
+            
+            <div class="consent-item">
+              {{ form.consent_data_usage(id="consent2") }} {{ form.consent_data_usage.label }}
+            </div>
+          </div>
+          
+          {% if form.consent_video_deletion.errors or form.consent_data_usage.errors %}
+          <div class="error-message">
+            Please agree to both consent statements to proceed.
+          </div>
+          {% endif %}
+        </div>
+        </div>
+
+        <div class="submit-wrapper">
+          {{ form.submit(class="btn btn-primary btn-lg submit-btn") }}
+        </div>
+      </form>
+    </div>
+
+    <footer class="survey-footer">
+      <p>Questions or concerns? Contact the research team.</p>
+      <p class="small-text">This survey is part of a university research project.</p>
+    </footer>
+
+  </div>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  
+  <script>
+    // Show filename when file is selected
+    document.querySelectorAll('.custom-file-input').forEach(input => {
+      input.addEventListener('change', function(e) {
+        const fileName = e.target.files[0]?.name || 'No file chosen';
+        const fileChosen = e.target.parentElement.querySelector('.file-chosen');
+        if (fileChosen) {
+          fileChosen.textContent = fileName;
+          fileChosen.classList.add('file-selected');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
