@@ -1,9 +1,10 @@
 from flask import render_template, redirect, request
 from app import app
-from app.forms import VideoUploadForm
+from app.forms import make_video_upload_form
 import os
 import uuid
 from app.r2 import upload_video
+
 
 submission_id = str(uuid.uuid4())
 
@@ -26,7 +27,8 @@ def All():
                        "or": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE"
     }
     letters = ["A","E","I","O","U","J","N","S","T","B","P", "tea", "coffee", "and", "or"]
-    form = VideoUploadForm(letters=letters)
+    VideoUploadForm = make_video_upload_form(letters)
+    form = VideoUploadForm()
 
 
     if form.validate_on_submit():
