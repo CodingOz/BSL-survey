@@ -9,21 +9,21 @@ submission_id = str(uuid.uuid4())
 
 @app.route('/', methods=['GET', 'POST'])
 def All():
-    video_tutorials = {"A": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "E": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "I": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "O": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "U": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "J": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "N": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "S": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "T": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "B": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "P": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "tea": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "coffee": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "and": "https://www.youtube.com/watch?v=mesL1xcYnuE",
-                       "or": "https://www.youtube.com/watch?v=mesL1xcYnuE"
+    video_tutorials = {"A": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "E": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "I": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "O": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "U": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "J": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "N": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "S": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "T": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "B": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "P": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "tea": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "coffee": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "and": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE",
+                       "or": "https://www.youtube-nocookie.com/embed/mesL1xcYnuE"
     }
     letters = ["A","E","I","O","U","J","N","S","T","B","P", "tea", "coffee", "and", "or"]
     form = VideoUploadForm(letters=letters)
