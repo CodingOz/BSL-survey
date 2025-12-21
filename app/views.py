@@ -1,7 +1,11 @@
-from flask import render_template
+from flask import render_template, redirect, request
 from app import app
 from app.forms import VideoUploadForm
 import os
+import uuid
+from app.r2 import upload_video
+
+submission_id = str(uuid.uuid4())
 
 @app.route('/', methods=['GET', 'POST'])
 def All():
@@ -14,14 +18,18 @@ def All():
         for letter in letters:
             video = getattr(form, f"video_{letter}").data
             if video:
-                save_path = os.path.join(app.config["UPLOAD_FOLDER"], f"{letter}.mp4")
-                video.save(save_path)
+                object_key = f"{uuid.uuid4()}/{letter}.mp4"
+                upload_video(video, object_key)
 
-        return "Upload successful!"
+        return redirect('/success')
     return render_template('main.html', 
                            title='survey page', 
                            form=form, 
                            letters=letters, 
                            video_tutorials=video_tutorials)
 
+# page for successful submission
+@app.route('/success')
+def success():
+    return render_template('success.html', title='Success')
 
