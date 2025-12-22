@@ -63,17 +63,6 @@ body {
   overflow: hidden;
 }
 
-.upload-btn {
-  width: 100%;
-  margin-top: 0.5rem;
-}
-
-.upload-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
 .card-header-custom {
   background: linear-gradient(135deg, var(--secondary-color) 0%, #059669 100%);
   color: white;
@@ -232,6 +221,10 @@ body {
   font-weight: 700;
 }
 
+/* File Upload Styling */
+.upload-wrapper {
+  position: relative;
+}
 
 .custom-file-input {
   width: 100%;
