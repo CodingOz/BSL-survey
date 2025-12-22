@@ -66,7 +66,7 @@ I'm making an app for recognising and teaching some basic British sign language 
 
               <div class="video-upload-item">
                 <div class="upload-label">
-                  {{ field.label }}
+                  {{ field.label + "(Click to upload)" }} 
                   <span class="sign-badge">{{ letter }}</span>
                 </div>
                 
@@ -78,8 +78,6 @@ I'm making an app for recognising and teaching some basic British sign language 
                     </iframe>
                   <p class="video-caption">Watch tutorial for "{{ letter }}"</p>
                 </div>
-
-                <p1> Click to upload your video</p1>
 
                 <div class="upload-wrapper">
                   {{ field(class="form-control-file custom-file-input", accept="video/*", capture="user") }}
