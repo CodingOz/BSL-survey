@@ -80,7 +80,7 @@ I'm making an app for recognising and teaching some basic British sign language 
                 </div>
 
                 <div class="upload-wrapper">
-                  
+                                    
                   {{ field(
                       class="custom-file-input d-none",
                       id="file_{{ letter }}",
@@ -88,12 +88,12 @@ I'm making an app for recognising and teaching some basic British sign language 
                       capture="user"
                   ) }}
 
-                  <button
-                    type="button"
-                    class="btn btn-outline-primary upload-btn"
-                    onclick="document.getElementById('file_{{ letter }}').click();">
+                  <label
+                    for="file_{{ letter }}"
+                    class="btn btn-outline-primary upload-btn">
                     Upload video
-                  </button>
+                  </label>
+
 
                   <!-- Filename display -->
                   <span class="file-chosen" id="filename_{{ letter }}">
