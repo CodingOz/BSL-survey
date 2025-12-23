@@ -21,7 +21,7 @@ def make_video_upload_form(letters):
             VideoUploadForm,
             f"video_{letter}",
             FileField(
-                f"Upload video for {letter}",
+                f"Upload video for {letter} (Click to upload)",
                 validators=[FileAllowed(["mp4", "mov", "avi"])]
             )
         )
