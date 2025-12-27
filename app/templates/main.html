@@ -113,6 +113,12 @@ I'm making an app for recognising and teaching some basic British sign language 
           <p1> This may take a few minutes to send the videos after submission. Please be patient and dont close the page until the success message opens. </p1>
         </div>
       </form>
+      <div id="loading-overlay" style="display:none;">
+        <div class="loading-content">
+          <div class="spinner-border text-primary" role="status"></div>
+          <p>Uploading videos, please wait…</p>
+        </div>
+      </div>
     </div>
 
     <footer class="survey-footer">
@@ -138,6 +144,11 @@ I'm making an app for recognising and teaching some basic British sign language 
           fileChosen.classList.add('file-selected');
         }
       });
+    });
+
+    // Show loading overlay on form submit
+    document.querySelector("form").addEventListener("submit", function () {
+      document.getElementById("loading-overlay").style.display = "flex";
     });
   </script>
 
